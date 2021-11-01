@@ -1,6 +1,16 @@
+const stayInBrowser = (queryString) => {
+  const searchParams = new URLSearchParams(queryString)
+
+  return searchParams.has("browser")
+}
+
 const openInMacApp = () => {
-  const { pathname } = window.location
+  const { pathname, search } = window.location
   if (pathname == null) {
+    return
+  }
+
+  if (stayInBrowser(search)) {
     return
   }
 
